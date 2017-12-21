@@ -1,0 +1,19 @@
+{
+  "name": "homeexpenceproject",
+  "version": "1.0.0",
+  "description": "Home exprence Project APIs",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "author": "V K Patel",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "jade": "^1.11.0",
+    "mongoose": "^4.13.7",
+    "passport": "^0.4.0"
+  }
+}
