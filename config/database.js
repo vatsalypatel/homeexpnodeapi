@@ -4,19 +4,19 @@
     purpose         - Writing - Mongo database connection and database error handaling.
 ==================================================================== **/
 
-let ENV = require("./environment.js");
-let config = require('./config-'+ENV.env+'.json');
-let mongoose = require('mongoose');
+var ENV = require("./environment.js");
+var config = require('./config-'+ENV.env+'.json');
+var mongoose = require('mongoose');
 mongoose.Promise = Promise;
 
 function connectMongoDB() {
-    let str = [];
+    var str = [];
 
     config.mongo.replicas.forEach(function(item) {
         str.push(item + '/' + config.mongo.database);
     });
 
-    let connectionString = "mongodb://" + str.join(",");
+    var connectionString = "mongodb://" + str.join(",");
 
     if (config.mongo.username && config.mongo.password) {
         connectionString = "mongodb://" + config.mongo.username + ":" + config.mongo.password + '@' + str.join(",");

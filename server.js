@@ -3,12 +3,12 @@
     Author          - Vatsaly Patel 
     purpose         - Writing - Entry point of server file
 ==================================================================== **/
-let express  = require('express');
+var express  = require('express');
 const app      = express();
-let mongoose = require('mongoose');
-let passport = require('passport');
-let bodyParser   = require('body-parser');
-let session      = require('express-session');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
 
 global.__parentDir = __dirname;
 
@@ -24,7 +24,7 @@ configDB.connectMongoDB(); // connect to our database
 // require(__parentDir+'/config/passport'); // pass passport for configuration
 
 // set up our express application
-app.use(cookieParser()); // read cookies (needed for auth)
+// app.use(cookieParser()); // read cookies (needed for auth)
 
 // parse application/x-www-form-urlencoded
 // parse application/json
@@ -47,7 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // routes
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+// require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch
 app.listen(port, hostIp);
