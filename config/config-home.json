@@ -1,0 +1,12 @@
+{
+    "PORT": 8080,
+    "HOST_IP": "0.0.0.0",
+    "reset_pass_time":3600000,
+    "mongo": {
+        "replicas"	: ["192.168.43.29:27017"],
+        "port"		: 27017,
+        "database"	: "expencedbvtec",
+        "username"	: "",
+        "password"	: ""
+    }
+}

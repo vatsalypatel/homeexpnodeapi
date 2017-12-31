@@ -6,6 +6,6 @@
 **/
 
 module.exports = {
-	env : 'bv'
+	env : 'home'
 }
 

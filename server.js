@@ -10,6 +10,9 @@ var passport = require('passport');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+
 global.__parentDir = __dirname;
 
 const configDB = require('./config/database.js');
@@ -18,6 +21,8 @@ const ENV = require('./config/environment.js');
 const config = require('./config/config-'+ENV.env+'.json');
 const port     = process.env.PORT || config.PORT;
 const hostIp     = config.HOST_IP || "0.0.0.0";
+
+require('./config/passport')(passport); // pass passport for configuration
 
 configDB.connectMongoDB(); // connect to our database
 
@@ -28,6 +33,8 @@ configDB.connectMongoDB(); // connect to our database
 
 // parse application/x-www-form-urlencoded
 // parse application/json
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json({limit: '500:mb'}));
 app.use(bodyParser.urlencoded({limit: '500mb', extended: true}));
 
@@ -47,7 +54,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // routes
-// require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch
 app.listen(port, hostIp);
